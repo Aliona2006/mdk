@@ -1,0 +1,44 @@
+/*В одном файле имя лыжника и его стартовый номер, в другом файле стартовый номер игрока, время старка и финиша.
+Указать первые три призера*/
+#include <stdio.h>
+#define MAXNSKI 1000 /// не больше 1000 лыжников
+int main() 
+{
+    char skier[MAXNSKI][2][20];
+    int finish_start[MAXNSKI][2];
+    int i, n; /// счетчик и количество лыжников 
+    int nomer; /// стартовый номер лыжника
+    int start, finish; ///  время старта и финиша
+    int times; /// время забега 
+    int j, m; /// счетчик и количесво номеров лыжников 
+    int time_start, time_finish, hs, ms, ss, hf, mf, sf; ///время
+
+    printf("Число лыжников: ");
+    scanf("%d", &n);
+    if (n < 1 || n > MAXNSKI) n = MAXNSKI;
+    
+    /// Заполним массив имен и номеров лыжников
+    i = 0;
+    while (i < n) {
+        printf("Имя и номер: ");
+        scanf("%s %s", skier[i][0], skier[i][1]);
+        i = i + 1;
+    }
+
+    j = 0;
+    while (j < n) 
+    {
+        printf("Номер лыжника Время старта Время финиша: ");
+        scanf("%d %d:%d:%d %d:%d:%d", &nomer, &hs, &ms, &ss, &hf, &mf, &sf);
+        j = j + 1;
+        
+        /// Посчитаем время каждого лыжника в секундах
+        time_start = hs * 3600 + ms * 60 + ss;
+        time_finish = hf * 3600 + mf * 60 + sf;
+        times = time_finish - time_start;
+        finish_start[i][1] = times;
+        finish_start[i][0] = nomer; 
+        i = i + 1;
+    }
+    
+}
